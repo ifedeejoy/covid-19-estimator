@@ -27,7 +27,7 @@ function impact($reportedCases, $periodType, $timeElapsed, $totalBeds, $avgIncom
 		"currentlyInfected" => $impactCI,
 		"infectionsByRequestedTime" => floor($infectionsByTime),
 		"severeCasesByRequestedTime" => floor($severeByTime),
-		"hospitalBedsRequestedByTime" => floor($bedsByTime),
+		"hospitalBedsByRequestedTime" => floor($bedsByTime),
 		"casesForICUByRequestedTime" => floor($icuCases),
 		"casesForVentilatorsByRequestedTime" => floor($ventilatorCases),
 		"dollarsInFlight" => floor($dollarsInFlight)
@@ -49,7 +49,7 @@ function severe($reportedCases, $periodType, $timeElapsed, $totalBeds, $avgIncom
 		"currentlyInfected" => $severeCI,
 		"infectionsByRequestedTime" => floor($infectionsByTime),
 		"severeCasesByRequestedTime" => floor($severeByTime),
-		"hospitalBedsRequestedByTime" => floor($bedsByTime),
+		"hospitalBedsByRequestedTime" => floor($bedsByTime),
 		"casesForICUByRequestedTime" => floor($icuCases),
 		"casesForVentilatorsByRequestedTime" => floor($ventilatorCases),
 		"dollarsInFlight" => floor($dollarsInFlight)

@@ -22,7 +22,7 @@ function impact($reportedCases, $periodType, $timeElapsed, $totalBeds, $avgIncom
 	$bedsByTime = bedsByTime($severeByTime, $totalBeds);
 	$icuCases = $infectionsByTime * 0.05;
 	$ventilatorCases = $infectionsByTime * 0.02;
-	$dollarsInFlight = (($infectionsByTime * $avgPopulation * $avgIncome)/30);
+	$dollarsInFlight = dollarsInFlight($infectionsByTime, $avgPopulation, $avgIncome, $timeElapsed, $periodType);
 
 	$impact = array(
 		"currentlyInfected" => $impactCI,
@@ -44,7 +44,7 @@ function severe($reportedCases, $periodType, $timeElapsed, $totalBeds, $avgIncom
 	$bedsByTime = bedsByTime($severeByTime, $totalBeds);
 	$icuCases = $infectionsByTime * 0.05;
 	$ventilatorCases = $infectionsByTime * 0.02;
-	$dollarsInFlight = (($infectionsByTime * $avgPopulation * $avgIncome)/30);
+	$dollarsInFlight = dollarsInFlight($infectionsByTime, $avgPopulation, $avgIncome, $timeElapsed, $periodType);
 
 	$severeImpact = array(
 		"currentlyInfected" => $severeCI,
@@ -78,7 +78,7 @@ function currentlyInfected($reportedCases, $multiplier)
 
 function infectionsByTime($currentlyInfected, $periodType, $timetoElapse)
 {
-	$factor = floor(timeElapsed($periodType, $timetoElapse) / 3);
+	$factor = (int)(timeElapsed($periodType, $timetoElapse) / 3);
 	$result = $currentlyInfected * pow(2, $factor);
 	return $result;
 }
@@ -91,18 +91,10 @@ function bedsByTime($severeByTime, $totalBeds)
 	return $bedsByTime;
 }
 
-$array = array(
-		"region" => array(
-			"name"=> "Africa",
-			"avgAge"=> "19.7",
-			"avgDailyIncomeInUSD"=> "5",
-			"avgDailyIncomePopulation"=> "0.71"
-		),
-		"periodType"=> "days",
-		"timeToElapse"=> "58",
-		"reportedCases"=> "674",
-		"population"=> "66622705",
-		"totalHospitalBeds"=> "1380614"
-	);
-print_r(covid19ImpactEstimator($array));
+function dollarsInFlight($infectionsByTime, $avgPopulation, $avgIncome, $timeElapsed, $periodType)
+{
+	$period = timeElapsed($periodType, $timeElapsed);
+	$result = (($infectionsByTime * $avgPopulation * $avgIncome)/$period);
+	return $result;
+}
 

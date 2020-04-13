@@ -10,7 +10,6 @@ function covid19ImpactEstimator($data)
 	$impact = impact($reportedCases, $periodType, $timeElapsed, $totalBeds, $avgIncome);
 	$severe = severe($reportedCases, $periodType, $timeElapsed, $totalBeds, $avgIncome);
 	$data = array("data" => $input, "impact" => $impact, "severeImpact" => $severe);
-	$data = json_encode($data);
   	return $data;
 }
 

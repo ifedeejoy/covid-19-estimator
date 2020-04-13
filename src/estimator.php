@@ -86,7 +86,7 @@ function infectionsByTime($currentlyInfected, $periodType, $timetoElapse)
 function bedsByTime($severeByTime, $totalBeds)
 {
 	$availableBeds = $totalBeds * 0.35;
-	$bedsByTime = $severeByTime - $availableBeds;
+	$bedsByTime = $availableBeds - $severeByTime;
 	return $bedsByTime;
 }
 

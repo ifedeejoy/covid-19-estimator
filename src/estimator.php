@@ -21,16 +21,16 @@ function impact($reportedCases, $periodType, $timeElapsed, $totalBeds, $avgIncom
 	$bedsByTime = bedsByTime($severeByTime, $totalBeds);
 	$icuCases = $infectionsByTime * 0.05;
 	$ventilatorCases = $infectionsByTime * 0.02;
-	$dollarsInFlight = floor(floor($infectionsByTime * 0.65 * $avgIncome)/30);
+	$dollarsInFlight = (($infectionsByTime * 0.65 * $avgIncome)/30);
 
 	$impact = array(
 		"currentlyInfected" => $impactCI,
-		"infectionsByRequestedTime" => floor($infectionsByTime),
-		"severeCasesByRequestedTime" => floor($severeByTime),
-		"hospitalBedsByRequestedTime" => floor($bedsByTime),
-		"casesForICUByRequestedTime" => floor($icuCases),
-		"casesForVentilatorsByRequestedTime" => floor($ventilatorCases),
-		"dollarsInFlight" => floor($dollarsInFlight)
+		"infectionsByRequestedTime" => (int) $infectionsByTime,
+		"severeCasesByRequestedTime" => (int) $severeByTime,
+		"hospitalBedsByRequestedTime" => (int) $bedsByTime,
+		"casesForICUByRequestedTime" => (int) $icuCases,
+		"casesForVentilatorsByRequestedTime" => (int) $ventilatorCases,
+		"dollarsInFlight" => (int) $dollarsInFlight
     );
     return $impact;
 }
@@ -43,16 +43,16 @@ function severe($reportedCases, $periodType, $timeElapsed, $totalBeds, $avgIncom
 	$bedsByTime = bedsByTime($severeByTime, $totalBeds);
 	$icuCases = $infectionsByTime * 0.05;
 	$ventilatorCases = $infectionsByTime * 0.02;
-	$dollarsInFlight = floor(floor($infectionsByTime * 0.65 * $avgIncome)/30);
+	$dollarsInFlight = (($infectionsByTime * 0.65 * $avgIncome)/30);
 
 	$severeImpact = array(
 		"currentlyInfected" => $severeCI,
-		"infectionsByRequestedTime" => floor($infectionsByTime),
-		"severeCasesByRequestedTime" => floor($severeByTime),
-		"hospitalBedsByRequestedTime" => floor($bedsByTime),
-		"casesForICUByRequestedTime" => floor($icuCases),
-		"casesForVentilatorsByRequestedTime" => floor($ventilatorCases),
-		"dollarsInFlight" => floor($dollarsInFlight)
+		"infectionsByRequestedTime" => (int) $infectionsByTime,
+		"severeCasesByRequestedTime" => (int) $severeByTime,
+		"hospitalBedsByRequestedTime" => (int) $bedsByTime,
+		"casesForICUByRequestedTime" => (int) $icuCases,
+		"casesForVentilatorsByRequestedTime" => (int) $ventilatorCases,
+		"dollarsInFlight" => (int) $dollarsInFlight
     );
     return $severeImpact;
 }
